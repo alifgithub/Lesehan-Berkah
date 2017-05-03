@@ -1,14 +1,13 @@
 package com.example.ferryal.try_list;
 
-import android.support.v7.app.AppCompatActivity;
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -21,37 +20,42 @@ public class listview extends AppCompatActivity {
     String[] NAMES = {"Nasi Ayam","NasI Goreng", "Nasi Lele","Nasi Kuning","Nasi Pecel","Nasi Rames","Nasi Soto",
             "Coca Cola","Aneka Juice","Es Buah", "Kopi","Milo","Air Mineral","Teh Manis"};
 
-    String[] DESCRIPTIONS = {"Rp. 10.000","Rp. 10.000","Rp. 10.000","Rp. 10.000","Rp. 10.000","Rp. 10.000","Rp. 10.000","Rp. 10.000","Rp. 10.000",
-            "Rp. 10.000","Rp. 10.000","Rp. 10.000","Rp. 10.000","Rp. 10.000","Rp. 10.000"};
+    String[] DESCRIPTIONS = {"Rp. 13.000","Rp. 12.000","Rp. 15.000","Rp. 11.000","Rp. 10.000","Rp. 12.000","Rp. 13.000","Rp. 4.000","Rp. 10.000",
+            "Rp. 16.000","Rp. 7.000","Rp. 4.000","Rp. 3.000","Rp. 4.000"};
 
-    int harga = 0;
-    boolean[] checkboxstate;
-    private Button button;
-    private TextView tot;
+    Button review;
+    Button antar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listview);
 
+        review = (Button) findViewById(R.id.review);
+
+        review.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(listview.this, Review.class);
+                startActivity(i);
+            }
+        });
+
+        antar = (Button) findViewById(R.id.antar);
+
+        antar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(listview.this, Antar.class);
+                startActivity(i);
+            }
+        });
+
         ListView listView=(ListView)findViewById(R.id.listview);
-        final CheckBox checkBox = (CheckBox) findViewById(R.id.mpilih);
 
         CustomAdapter customAdapter=new CustomAdapter();
 
         listView.setAdapter(customAdapter);
-
-        button = (Button) findViewById(R.id.pesan);
-        tot = (TextView) findViewById(R.id.tot);
-
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                tot.setText("" + harga);
-
-            }
-        });
 
     }
 
@@ -59,7 +63,7 @@ public class listview extends AppCompatActivity {
         TextView mNama;
         TextView mDesc;
         ImageView mImgs;
-        CheckBox mpilih;
+        //CheckBox mpilih;
 
     }
 
@@ -89,8 +93,6 @@ public class listview extends AppCompatActivity {
                 viewHolder.mImgs = (ImageView)view.findViewById(R.id.imageView);
                 viewHolder.mNama = (TextView)view.findViewById(R.id.textView_name);
                 viewHolder.mDesc = (TextView)view.findViewById(R.id.textView_desciption);
-                viewHolder.mpilih = (CheckBox) view.findViewById(R.id.mpilih);
-                //checkboxstate = new boolean[i];
 
 
                 view.setTag(viewHolder);
@@ -103,28 +105,11 @@ public class listview extends AppCompatActivity {
             viewHolder.mNama.setText(NAMES[i]);
             viewHolder.mDesc.setText(DESCRIPTIONS[i]);
 
-            viewHolder.mpilih.setChecked(false);
-
-            if (checkboxstate[i]) {
-                viewHolder.mpilih.setChecked(true);
-            } else {
-                viewHolder.mpilih.setChecked(false);
-            }
-
-            viewHolder.mpilih.setOnClickListener(new View.OnClickListener() {
-
-                @Override
-                public void onClick(View v) {
-                    if (viewHolder.mpilih.isChecked())
-                        checkboxstate[i] = true;
-                    else
-                        checkboxstate[i] = false;
-
-                }
-            });
+            //viewHolder.mpilih.setChecked(false);
 
             return view;
         }
     }
+
 
 }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
@@ -13,10 +14,35 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="™Show Menu™"
+        android:text="™Pilih Menu™"
         android:layout_alignParentBottom="true"
         android:background="@color/colorPrimary"
-        android:textColor="#00FFFF"
+        android:textColor="#e2eded"
         android:id="@+id/showmenu"/>
+    <ViewStub
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout="@layout/activity_listview"
+        android:id="@+id/stub_list"/>
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        app:srcCompat="@drawable/selamatdatang"
+        android:layout_marginLeft="37dp"
+        android:layout_marginStart="37dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="300dp"
+        android:layout_height="250dp"
+        app:srcCompat="@drawable/main"
+        android:layout_above="@+id/showmenu"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

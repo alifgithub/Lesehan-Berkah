@@ -17,8 +17,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".listview" />
-        <activity android:name=".PesanActivity"></activity>
+        <activity
+            android:name=".listview"
+            android:label="Food Out" />
+        <activity android:name=".PesanActivity" />
+        <activity android:name=".Review" />
+        <activity android:name=".Antar"></activity>
     </application>
 
 </manifest>
